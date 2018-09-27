@@ -12,7 +12,7 @@
 <body>
 	<section class="bolsitaHero Redi">
 		<header>
-			<!---------------------------------------Menu------------------------------------------------->
+			<span class="burguer-button icon-menu" id="burguer-button"></span>
 			<nav class="menu" id="menu">
 				<ul>
 					<li>
@@ -28,7 +28,7 @@
 					</li>
 
 					<li>
-						<a href="#contacto"> <span class="icon-address-book _ih"></span> Contacto</a>
+						<a href="nosotros.html#contacto"> <span class="icon-address-book _ih"></span> Contacto</a>
 					</li>
 				</ul>
 			</nav>		
@@ -39,20 +39,99 @@
 		</figure>
 	</section>
 
+	<img class="hojas" src="images/hojas.png">
+
 	<section class="content u_wrapper">
 		<h1>Nosotros</h1>
+		<p>
+			Promocionales la Bolsita es una empresa creada en 2017 con el fin de ofrecer a nuestros clientes artículos publicitarios con los que puedan dar a conocer su negocio y que sean amigables con el medio ambiente. De esta manera fue como nos adentramos en la elaboración de bolsas publicitarias elaboradas de materiales ecológicos.
+			<br><br>
+			Con el fin de ofrecer alternativas a nuestros clientes actualmente trabajamos 3 líneas de productos principales:
+			<br>
+
+			<ul>
+				<li>Bolsas ecológicas de tela no tejida de 70 gramos</li>
+				<br>
+				<li>Bolsas de tela canasta</li>
+				<br>
+				<li>Bolsas y Morrales elaborados en Manta</li>
+				<br>
+			</ul>
+		</p>
+
+		<h1>Misión</h1>
+		<p>
+			Brindar un  producto publicitario de calidad y  bajo costo que se adapte a las necesidades de nuestros clientes y a su vez  ayude a la preservación del medio ambiente.
+		</p>
+
+		<h1>Visión</h1>
+		<p>
+			Ser una empresa que se adapte a las necesidades de nuestros clientes, con productos innovadores, de calidad y capaces de crear un impacto positivo en el medio ambiente.
+		</p>
+
+		<h1>Valores</h1>
+	</section>
+
+	<section class="valores u_wrapper">
+		<div class="val1">
+			<div>
+				<img src="images/val1.png" alt="Icono de Valores">
+			</div>
+
+			<div>
+				<p>
+					Respeto por el medio ambiente
+				</p>
+			</div>
+		</div>
+
+		<div class="val2">
+			<div>
+				<img src="images/val2.png" alt="Icono de Valores">
+			</div>
+
+			<div>
+				<p>
+					Excelencia en nuestro servicio.
+				</p>
+			</div>
+		</div>
+
+		<div class="val3">
+			<div>
+				<img src="images/val3.png" alt="Icono de Valores">
+			</div>
+
+			<div>
+				<p>
+					Innovación constantemente innovando con nuevos productos, servicios y procesos.
+				</p>
+			</div>
+		</div>
+
+		<div class="val4">
+			<div>
+				<img src="images/val4.png" alt="Icono de Valores">
+			</div>
+
+			<div>
+				<p>
+					Profesionalismo actuar siempre con ética y profesionalismo.
+				</p>
+			</div>
+		</div>
 	</section>
 
 
 	<section class="form-contacto" id="contacto">
 		<h1>¡Contáctanos!</h1>		
-		<form>
+		<form action="correo.php" method="post">
 			<div class="inputs u_wrapper">
 				<input type="text" required placeholder="Nombre" id="nombre" name="nombre"/>
 
 			    <input type="email" required placeholder="E-Mail" id="email" name="email"/>
 
-			    <input type="tel" required placeholder="Telefono" id="Telefono" name="tema"/>
+			    <input type="tel" required placeholder="Telefono" id="telefono" name="telefono"/>
 			</div>
 
 			<div class="text-area u_wrapper">
@@ -102,6 +181,62 @@
 			</div>
 		</a>		
 	</footer>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/blazy/1.8.2/blazy.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    
+    <script>
+
+    var $burguerButton= document.getElementById("burguer-button");
+    var $menu= document.getElementById("menu");
+    var consulta= window.matchMedia("(max-width: 500px)");
+
+          consulta.addListener(mediaQuery);
+      mediaQuery();
+
+      function toggleMenu()
+        {
+          $menu.classList.toggle("active");
+        }
+
+        function showMenu()
+        {
+          $menu.classList.add("active");
+        }
+
+        function hideMenu()
+        {
+          $menu.classList.remove("active");
+        }
+
+
+      function mediaQuery()
+      {
+        if (consulta.matches) 
+        {
+          console.log("se cumplio la condisión");
+          $burguerButton.addEventListener("touchstart", toggleMenu); 
+        }
+        else
+        {
+          console.log("no se cumplio la condisión");
+          $burguerButton.removeEventListener("touchstart", toggleMenu); 
+        }
+      }
+      /*BeLazyLoading*/
+      var bLazy = new Blazy({
+        selector: "img"
+      });
+
+      /*Gestos Touch whit HammerJs*/
+      var $body= document.body;
+      var gestos = new Hammer($body);
+        
+        gestos.on('swipeleft', hideMenu);
+        gestos.on('swiperight', showMenu);
+
+    </script>
 </body>
 
 

@@ -12,7 +12,7 @@
 <body>
 	<section class="bolsitaHero">
 		<header>
-			<!---------------------------------------Menu------------------------------------------------->
+			<span class="burguer-button icon-menu" id="burguer-button"></span>
 			<nav class="menu" id="menu">
 				<ul>
 					<li>
@@ -28,63 +28,88 @@
 					</li>
 
 					<li>
-						<a href="#contacto"> <span class="icon-address-book _ih"></span> Contacto</a>
+						<a href="index.html#contacto"> <span class="icon-address-book _ih"></span> Contacto</a>
 					</li>
 				</ul>
 			</nav>		
 		</header>
 
-		<figure class="container-logo">
-			<img src="images/logo_verde.png" alt="La Bolsita Logo">
-		</figure>
-
-		<div class="btn-cotizar u_wrapper">
+		<!--<div class="btn-cotizar u_wrapper">
 			<a href="">¡Pide Tu Cotizacion Ya!</a>
-		</div>
+		</div>-->
+	</section>
 
-		<!--<p class="u_wrapper">
-			En promocionales La Bolsita nos esforzamos por ofrecerle un producto que se adapte a sus necesidades y un servicio amable y eficiente que cumpla con sus expectativas.
-			Nos especializamos en la elaboración de bolsas publicitarias elaboradas en tela ecológica, manta y canasta.
-		</p>-->
+	<section class="container-slider">
+		<div class="slider">
+			<ul>
+				<li>
+					<img src="images/img3.png">
+				</li>
+
+				<li>
+					<img src="images/img2.png">
+				</li>
+
+				<li>
+					<img src="images/img1.png">
+				</li>
+			</ul>
+		</div>
 	</section>
 
 
 	<section class="productos u_wrapper">
+
 		<h1>Algunos de Nuestros productos</h1>
 		
 
 		<div class="container-productos">
 			<div class="producto">
 				<h2>Morralitos</h2>
+				<div>
+					<img data-src="images/morralitos.png" alt="Morralitos">
+				</div>
 			</div>
 
 			<div class="producto">
 				<h2>Bolsas con Fuelle</h2>
+				<div>
+					<img data-src="images/fuelle.png" alt="Bolsa Con Fuelle">
+				</div>
 			</div>
 
 			<div class="producto">
 				<h2>Bolsa Plana</h2>
+				<div>
+					<img data-src="images/Plana.png" alt="Bolsa Plana">
+				</div>
 			</div>
 
 			<div class="producto">
 				<h2>Bolsa Tipo Boutique</h2>
+				<div>
+					<img data-src="images/boutique.png" alt="Bolsa Tipo Boutique">
+				</div>
 			</div>
 
 			<div class="producto">
 				<h2>Bolsa para vino</h2>
+				<div>
+					<img data-src="images/vino.png" alt="Bolsa Para Vino">
+				</div>
 			</div>
 		</div>
 	</section>
 
 	<section class="form-contacto" id="contacto">
 		<h1>¡Contáctanos!</h1>		
-		<form>
+		<form action="correo.php" method="post">
 			<div class="inputs u_wrapper">
 				<input type="text" required placeholder="Nombre" id="nombre" name="nombre"/>
 
 			    <input type="email" required placeholder="E-Mail" id="email" name="email"/>
 
-			    <input type="tel" required placeholder="Telefono" id="Telefono" name="tema"/>
+			    <input type="tel" required placeholder="Telefono" id="telefono" name="telefono"/>
 			</div>
 
 			<div class="text-area u_wrapper">
@@ -134,6 +159,62 @@
 			</div>
 		</a>		
 	</footer>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/blazy/1.8.2/blazy.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    
+    <script>
+
+    var $burguerButton= document.getElementById("burguer-button");
+    var $menu= document.getElementById("menu");
+    var consulta= window.matchMedia("(max-width: 500px)");
+
+          consulta.addListener(mediaQuery);
+      mediaQuery();
+
+      function toggleMenu()
+        {
+          $menu.classList.toggle("active");
+        }
+
+        function showMenu()
+        {
+          $menu.classList.add("active");
+        }
+
+        function hideMenu()
+        {
+          $menu.classList.remove("active");
+        }
+
+
+      function mediaQuery()
+      {
+        if (consulta.matches) 
+        {
+          console.log("se cumplio la condisión");
+          $burguerButton.addEventListener("touchstart", toggleMenu); 
+        }
+        else
+        {
+          console.log("no se cumplio la condisión");
+          $burguerButton.removeEventListener("touchstart", toggleMenu); 
+        }
+      }
+      /*BeLazyLoading*/
+      var bLazy = new Blazy({
+        selector: "img"
+      });
+
+      /*Gestos Touch whit HammerJs*/
+      var $body= document.body;
+      var gestos = new Hammer($body);
+        
+        gestos.on('swipeleft', hideMenu);
+        gestos.on('swiperight', showMenu);
+
+    </script>
+
 </body>
 
 
